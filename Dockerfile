@@ -16,4 +16,4 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 # Install npm
 RUN apt-get update -y && apt-get install curl -y && curl -sL https://deb.nodesource.com/setup_10.x
-RUN apt-get install nodejs -y
+RUN apt-get install nodejs npm -y
