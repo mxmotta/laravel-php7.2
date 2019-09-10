@@ -12,3 +12,8 @@ RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+
+# Install npm
+RUN apt-get update -y && apt-get install curl -y && curl -sL https://deb.nodesource.com/setup_10.x
+RUN apt-get install nodejs -y
