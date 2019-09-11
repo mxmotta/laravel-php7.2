@@ -2,6 +2,7 @@ FROM php:7.2-apache
 RUN apt-get update -y && apt-get install -y openssl zip unzip git zlib1g-dev
 RUN docker-php-ext-install mbstring
 RUN docker-php-ext-install pdo_mysql
+RUN docker-php-ext-install mysqli
 RUN docker-php-ext-install zip
 RUN useradd app
 RUN a2enmod rewrite
