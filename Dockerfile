@@ -1,9 +1,10 @@
 FROM php:7.2-apache
-RUN apt-get update -y && apt-get install -y openssl zip unzip git zlib1g-dev
+RUN apt-get update -y && apt-get install -y openssl zip unzip git zlib1g-dev libpng-dev libjpeg-dev libfreetype6-dev && apt clean -y
 RUN docker-php-ext-install mbstring
 RUN docker-php-ext-install pdo_mysql
 RUN docker-php-ext-install mysqli
 RUN docker-php-ext-install zip
+RUN docker-php-ext-install gd
 RUN useradd app
 RUN a2enmod rewrite
 
@@ -16,5 +17,5 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 
 # Install npm
-RUN apt-get update -y && apt-get install curl -y && curl -sL https://deb.nodesource.com/setup_10.x
+RUN apt-get update -y && apt-get install curl -y && curl -sL https://deb.nodesource.com/setup_10.x && apt clean -y
 RUN apt-get install nodejs npm -y
