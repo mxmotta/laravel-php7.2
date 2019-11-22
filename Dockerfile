@@ -1,7 +1,11 @@
 FROM php:7.2-apache
-RUN apt-get update -y && apt-get install -y openssl zip unzip git zlib1g-dev libpng-dev libjpeg-dev libfreetype6-dev libicu-dev g++ libpq-dev \
-&& apt clean -y
-RUN docker-php-ext-configure intl && docker-php-ext-install intl
+RUN apt-get update -y && apt-get install -y openssl zip unzip git zlib1g-dev libpng-dev libjpeg-dev libfreetype6-dev libicu-dev \
+g++ ghostscript libpq-dev libmagickwand-dev --no-install-recommends \
+&& docker-php-ext-configure intl && docker-php-ext-install intl \
+&& apt clean -y \
+&& pecl install imagick \
+&& docker-php-ext-enable imagick
+
 RUN docker-php-ext-install mbstring
 RUN docker-php-ext-install pdo_mysql
 RUN docker-php-ext-install mysqli
