@@ -1,5 +1,5 @@
 FROM php:7.2-apache
-RUN apt-get update -y && apt-get install -y openssl zip unzip git zlib1g-dev libpng-dev libjpeg-dev libfreetype6-dev libicu-dev \
+RUN apt-get update -y && apt-get install -y openssl zip unzip git zlib1g-dev libpng-dev libjpeg-dev libfreetype6-dev libicu-dev libldap2-dev \
 g++ ghostscript libpq-dev libmagickwand-dev --no-install-recommends \
 && docker-php-ext-configure intl && docker-php-ext-install intl \
 && apt clean -y \
@@ -11,6 +11,7 @@ RUN docker-php-ext-install pdo_mysql
 RUN docker-php-ext-install mysqli
 RUN docker-php-ext-install zip
 RUN docker-php-ext-install gd
+RUN docker-php-ext-install ldap
 RUN useradd app
 RUN a2enmod rewrite
 
